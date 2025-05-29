@@ -1,0 +1,70 @@
+/* базовые стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* структура макета */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+}
+
+#content {
+    flex: 1;
+    padding: 20px 30px;
+}
+
+/* стили сайдбара */
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #495057;
+}
+
+.sidebar-header h3 {
+    font-size: 36px;
+    text-align: center;
+    margin: 0;
+}
+
+.sidebar-header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.list-unstyled {
+    padding: 0;
+    list-style: none;
+}
+
+.components li {
+    padding: 10px 20px;
+}
+
+.components a {
+    color: #adb5bd;
+    text-decoration: none;
+    display: block;
+}
+
+.components a:hover {
+    color: #fff;
+}
+
+.sidebar-footer {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-top: 1px solid #495057;
+    font-size: 0.8rem;
+    color: #adb5bd;
+}
