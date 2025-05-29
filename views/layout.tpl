@@ -23,8 +23,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">main</a></li>
-                    <li><a href="/about">about</a></li>
-                    <li><a href="/contact">contact</a></li>
+                    <li><a href="/hamilton">hamilton</a></li>
                 </ul>
             </div>
         </div>
