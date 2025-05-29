@@ -18,3 +18,13 @@ def home():
 @view('metrics')
 def metrics():
     return
+
+@route('/euler')
+@view('euler')
+def euler():
+    return
+
+@route('/hamilton')
+@view('hamilton')
+def hamilton():
+    return

@@ -23,6 +23,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">main</a></li>
+                    <li><a href="/euler">euler</a></li>
+                    <li><a href="/hamilton">hamilton</a></li>
                     <li><a href="/metrics">metrics</a></li>
                 </ul>
             </div>
