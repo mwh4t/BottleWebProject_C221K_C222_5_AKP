@@ -14,6 +14,11 @@ def home():
         year=datetime.now().year
     )
 
+@route('/metrics')
+@view('metrics')
+def metrics():
+    return
+
 @route('/euler')
 @view('euler')
 def euler():
