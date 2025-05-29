@@ -6,42 +6,35 @@
     <title>{{ title }} - My Bottle Application</title>
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/base.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">Application name</a>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><a href="/">УП02</a></h3>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">main</a></li>
-                    <li><a href="/euler">euler</a></li>
-                    <li><a href="/hamilton">hamilton</a></li>
-                    <li><a href="/metrics">metrics</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="container body-content">
-        {{!base}}
-        <hr />
-        <footer>
-            <p>&copy; {{ year }} - My Bottle Application</p>
-        </footer>
+            <ul class="list-unstyled components">
+                <li><a href="/euler">Поиск Эйлерова цикла</a></li>
+                <li><a href="/hamilton">Поиск Гамильтонова цикла</a></li>
+                <li><a href="/metrics">Поиск метрик</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p>&copy; 2025 - My Bottle Application</p>
+            </div>
+        </nav>
+
+        <div id="content">
+            {{!base}}
+        </div>
     </div>
 
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
-
 </body>
 </html>
