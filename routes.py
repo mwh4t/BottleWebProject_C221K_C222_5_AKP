@@ -14,22 +14,12 @@ def home():
         year=datetime.now().year
     )
 
-@route('/contact')
-@view('contact')
-def contact():
+@route('/euler')
+@view('euler')
+def euler():
     """Renders the contact page."""
     return dict(
-        title='Contact',
-        message='Your contact page.',
-        year=datetime.now().year
-    )
-
-@route('/about')
-@view('about')
-def about():
-    """Renders the about page."""
-    return dict(
-        title='About',
-        message='Your application description page.',
+        title='Euler',
+        message='Euler page.',
         year=datetime.now().year
     )
