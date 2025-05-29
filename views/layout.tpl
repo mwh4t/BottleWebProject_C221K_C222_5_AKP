@@ -24,6 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/">main</a></li>
                     <li><a href="/euler">euler</a></li>
+                    <li><a href="/hamilton">hamilton</a></li>
                 </ul>
             </div>
         </div>

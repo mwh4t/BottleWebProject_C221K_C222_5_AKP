@@ -17,9 +17,9 @@ def home():
 @route('/euler')
 @view('euler')
 def euler():
-    """Renders the contact page."""
-    return dict(
-        title='Euler',
-        message='Euler page.',
-        year=datetime.now().year
-    )
+    return
+
+@route('/hamilton')
+@view('hamilton')
+def hamilton():
+    return
