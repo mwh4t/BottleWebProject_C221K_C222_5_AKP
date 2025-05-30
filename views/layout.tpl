@@ -11,21 +11,28 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3><a href="/">УП02</a></h3>
+    <nav id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <button type="button" id="sidebarToggle" class="btn btn-info">
+                    <span>☰</span>
+                </button>
+                <div class="logo">УП02</div>
             </div>
+            <ul class="top-nav">
+                <li><a href="/about">О проекте</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <div class="wrapper">
+        <nav id="sidebar" class="collapsed">
             <ul class="list-unstyled components">
                 <li><a href="/euler">Поиск Эйлерова цикла</a></li>
                 <li><a href="/hamilton">Поиск Гамильтонова цикла</a></li>
                 <li><a href="/metrics">Поиск метрик</a></li>
             </ul>
-
-            <div class="sidebar-footer">
-                <p>&copy; 2025 - My Bottle Application</p>
-            </div>
         </nav>
 
         <div id="content">
@@ -36,5 +43,6 @@
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
+    <script src="/static/scripts/site.js"></script>
 </body>
 </html>
