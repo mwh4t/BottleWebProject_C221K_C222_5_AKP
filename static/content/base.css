@@ -11,60 +11,135 @@ body {
 .wrapper {
     display: flex;
     min-height: 100vh;
+    padding-top: 60px;
 }
 
+/* стили верхней панели навигации */
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #343a40;
+    color: white;
+    z-index: 1050;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+#topbar .topbar-left {
+    display: flex;
+    align-items: center;
+    flex: 2; /* 2/3 */
+    padding-left: 0;
+}
+
+#topbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 30px;
+    text-align: left;
+}
+
+#topbar .logo a {
+    color: white;
+    text-decoration: none;
+}
+
+#topbar .logo a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#topbar .top-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1; /* 1/3 */
+    justify-content: flex-end;
+}
+
+#topbar .top-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+#topbar .top-nav a:hover {
+    color: #adb5bd;
+}
+
+/* кнопка переключения сайдбара */
+#sidebarToggle {
+    color: white !important;
+    font-size: 36px !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+#sidebarToggle:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* стили боковой панели */
 #sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
     width: 250px;
+    height: calc(100vh - 60px);
     background-color: #343a40;
     color: #fff;
-    padding: 20px 0;
+    padding: 0;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+#sidebar.collapsed {
+    transform: translateX(-250px);
 }
 
 #content {
+    width: 100%;
+    padding: 20px;
+    transition: all 0.3s;
+    position: relative;
+    margin-left: 250px;
     flex: 1;
-    padding: 20px 30px;
 }
 
-/* стили сайдбара */
-.sidebar-header {
-    padding: 0 20px 20px;
-    border-bottom: 1px solid #495057;
+#content.expanded {
+    margin-left: 0;
 }
 
-.sidebar-header h3 {
-    font-size: 36px;
-    text-align: center;
-    margin: 0;
-}
-
-.sidebar-header a {
-    color: #fff;
-    text-decoration: none;
-}
-
+/* стили навигации боковой панели */
 .list-unstyled {
     padding: 0;
     list-style: none;
+    margin: 0;
 }
 
-.components li {
-    padding: 10px 20px;
-}
-
-.components a {
+.components a, #sidebar .list-unstyled a {
     color: #adb5bd;
     text-decoration: none;
     display: block;
-}
-
-.components a:hover {
-    color: #fff;
-}
-
-.sidebar-footer {
-    margin-top: 20px;
     padding: 10px 20px;
-    border-top: 1px solid #495057;
-    font-size: 0.8rem;
-    color: #adb5bd;
+}
+
+.components a:hover, #sidebar .list-unstyled a:hover {
+    color: #fff;
 }
