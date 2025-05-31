@@ -1,5 +1,4 @@
 % rebase('layout.tpl', title='euler')
-
 <link rel="stylesheet" href="/static/content/graphs_styles.css">
 
 <div class="main-content">

@@ -1,10 +1,10 @@
 /* базовые стили */
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
-    color: #333;
+    color: #4d4f69;
 }
 
 /* структура макета */
@@ -21,8 +21,8 @@ body {
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: #343a40;
-    color: white;
+    background-color: #e7e9ef;
+    color: #4d4f69;
     z-index: 1050;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -34,31 +34,30 @@ body {
     height: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 15px 0 0;
     width: 100%;
 }
 
 #topbar .topbar-left {
     display: flex;
     align-items: center;
-    flex: 2; /* 2/3 */
+    flex: 1;
     padding-left: 0;
 }
 
 #topbar .logo {
     font-size: 24px;
     font-weight: bold;
-    margin-left: 30px;
-    text-align: left;
+    margin-left: 15px;
 }
 
 #topbar .logo a {
-    color: white;
+    color: #4d4f69;
     text-decoration: none;
 }
 
 #topbar .logo a:hover {
-    color: white;
+    color: #3a3c50;
     text-decoration: none;
 }
 
@@ -67,32 +66,35 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    flex: 1; /* 1/3 */
-    justify-content: flex-end;
 }
 
 #topbar .top-nav a {
-    color: #fff;
+    color: #4d4f69;
     text-decoration: none;
     padding: 10px 15px;
+    transition: color 0.2s;
 }
 
 #topbar .top-nav a:hover {
-    color: #adb5bd;
+    color: #3a3c50;
 }
 
 /* кнопка переключения сайдбара */
 #sidebarToggle {
-    color: white !important;
-    font-size: 36px !important;
-    background-color: transparent !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
+    color: #4d4f69;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    margin-left: 0;
 }
 
-#sidebarToggle:hover {
-    background-color: rgba(255,255,255,0.1) !important;
+#sidebarToggle:hover,
+#sidebarToggle:focus {
+    background-color: rgba(77, 79, 105, 0.1);
+    outline: none;
 }
 
 /* стили боковой панели */
@@ -102,44 +104,94 @@ body {
     top: 60px;
     width: 250px;
     height: calc(100vh - 60px);
-    background-color: #343a40;
-    color: #fff;
+    background-color: #e7e9ef;
+    color: #4d4f69;
     padding: 0;
-    transition: all 0.3s;
+    transition: transform 0.3s ease;
     z-index: 1000;
+    overflow-y: auto;
 }
 
 #sidebar.collapsed {
     transform: translateX(-250px);
 }
 
+/* основной контент */
 #content {
     width: 100%;
     padding: 20px;
-    transition: all 0.3s;
-    position: relative;
+    transition: margin-left 0.3s ease;
     margin-left: 250px;
     flex: 1;
+    min-height: calc(100vh - 100px);
 }
 
 #content.expanded {
     margin-left: 0;
 }
 
-/* стили навигации боковой панели */
+/* объединённые стили навигации боковой панели */
 .list-unstyled {
     padding: 0;
     list-style: none;
     margin: 0;
 }
 
-.components a, #sidebar .list-unstyled a {
-    color: #adb5bd;
+#sidebar .list-unstyled a {
+    color: #4d4f69;
     text-decoration: none;
     display: block;
-    padding: 10px 20px;
+    padding: 12px 20px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
 }
 
-.components a:hover, #sidebar .list-unstyled a:hover {
-    color: #fff;
+#sidebar .list-unstyled a:hover {
+    color: #3a3c50;
+    background-color: rgba(77, 79, 105, 0.08);
+    border-left-color: #17a2b8;
+}
+
+/* медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    #topbar .logo {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    #topbar .container {
+        padding: 0 10px 0 0;
+    }
+
+    #content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    #sidebar {
+        width: 100%;
+        transform: translateX(-100%);
+    }
+
+    #sidebar.collapsed {
+        transform: translateX(-100%);
+    }
+
+    #sidebar:not(.collapsed) {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    #topbar .logo {
+        font-size: 16px;
+    }
+
+    #topbar .container {
+        padding: 0 5px 0 0;
+    }
+
+    #content {
+        padding: 10px;
+    }
 }
