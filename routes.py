@@ -14,9 +14,9 @@ def home():
         year=datetime.now().year
     )
 
-@route('/metrics')
-@view('metrics')
-def metrics():
+@route('/about')
+@view('about')
+def about():
     return
 
 @route('/euler')
@@ -27,4 +27,9 @@ def euler():
 @route('/hamilton')
 @view('hamilton')
 def hamilton():
+    return
+
+@route('/metrics')
+@view('metrics')
+def metrics():
     return
