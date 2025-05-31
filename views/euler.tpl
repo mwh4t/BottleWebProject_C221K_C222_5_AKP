@@ -15,18 +15,18 @@
                 <label>Количество вершин (1-20):
                     <input type="number" id="matrix-size" name="size" min="1" max="20" value="3">
                 </label>
-                <button type="button" id="example-btn">Пример</button>
             </div>
             
             <div class="matrix-container" id="matrix-container">
-                <!-- Таблица будет сгенерирована JavaScript -->
-            </div>
-            
-            <div class="buttons">
-                <button type="submit">Рассчитать</button>
-                <button type="button" onclick="location.href='/theory'">К теории</button>
+                <!-- Таблица сгенерирована JavaScript -->
             </div>
         </form>
+    </div>
+
+    <div class="buttons">
+        <button id="calc-btn" type="button">Рассчитать</button>
+        <button id="teory-btn" type="button">К теории</button>
+        <button id="example-btn" type="button">Пример</button>
     </div>
 
     <!-- Область вывода графика -->

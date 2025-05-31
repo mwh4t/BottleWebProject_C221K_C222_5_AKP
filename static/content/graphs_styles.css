@@ -18,32 +18,24 @@
     margin-left: 10px;
 }
 
-#example-btn {
-    padding: 8px 15px;
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 .matrix-table {
     width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
 }
 
-    .matrix-table th {
-        background-color: #f1f3f5;
-        padding: 8px;
-        text-align: center;
-        font-weight: bold;
-    }
+.matrix-table th {
+    background-color: #f1f3f5;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+}
 
-    .matrix-table td {
-        border: 1px solid #dee2e6;
-        padding: 0;
-        text-align: center;
-    }
+.matrix-table td {
+    border: 1px solid #dee2e6;
+    padding: 0;
+    text-align: center;
+}
 
 .matrix-cell {
     width: 40px;
@@ -54,12 +46,32 @@
     background-color: transparent;
 }
 
-    .matrix-cell:disabled {
-        background-color: #f8f9fa;
-        color: #6c757d;
-    }
+.matrix-cell:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
 
-    .matrix-cell:focus {
-        background-color: #e7f5ff;
-        outline: none;
-    }
+.matrix-cell:focus {
+    background-color: #e7f5ff;
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.buttons button {
+    padding: 8px 15px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #dee2e6;
+}
