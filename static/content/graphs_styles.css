@@ -1,3 +1,134 @@
+/* ======= METRICS PAGE STYLES ======= */
+.metrics-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.left-panel {
+    width: 280px;
+    background-color: #e8e8e8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-section {
+    margin-bottom: 15px;
+}
+
+.input-section h2 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.textarea-container {
+    position: relative;
+    display: flex;
+}
+
+.line-numbers {
+    background-color: #f0f0f0;
+    border: 1px solid #dee2e6;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    /* Changed padding to match textarea's padding */
+    padding: 8px;
+    box-sizing: border-box;
+    font-family: monospace;
+    font-size: 14px;
+    color: #666;
+    width: 30px;
+    text-align: center;
+    line-height: 1.2;
+    user-select: none;
+    overflow: hidden;
+}
+
+.input-field {
+    width: calc(100% - 30px);
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 0 4px 4px 0;
+    font-family: monospace;
+    font-size: 14px;
+    resize: none;
+    box-sizing: border-box;
+    line-height: 1.2;
+    outline: none;
+    overflow: hidden;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+}
+
+.node-count-field {
+    height: 50px;
+}
+
+.graph-data-field {
+    height: 100px;
+}
+
+.right-panel {
+    flex: 1;
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 8px;
+    min-height: 500px;
+    padding: 20px;
+}
+
+.graph-output h2 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.graph-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #6c757d;
+    font-size: 16px;
+    background-color: #f8f9fa;
+}
+
+.description {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 4px solid #007bff;
+}
+
+.description h3 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.description ul {
+    margin: 5px 0 0 0;
+    padding-left: 15px;
+}
+
+.description li {
+    margin-bottom: 3px;
+    color: #555;
+    font-size: 12px;
+}
+
+/* ======= EULER/HAMILTON PAGE STYLES ======= */
 .matrix-controls {
     display: flex;
     justify-content: space-between;

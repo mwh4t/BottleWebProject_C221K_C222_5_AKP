@@ -33,7 +33,7 @@
             <ul class="list-unstyled components">
                 <li><a href="/euler">Поиск Эйлерова цикла</a></li>
                 <li><a href="/hamilton">Поиск Гамильтонова цикла</a></li>
-                <li><a href="/metrics">Поиск метрик</a></li>
+                <li><a href="/metrics">Расчёт метрик</a></li>
             </ul>
         </nav>
 
