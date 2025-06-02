@@ -152,51 +152,6 @@ body {
     border-left-color: #17a2b8;
 }
 
-/* медиа-запросы для адаптивности */
-@media (max-width: 768px) {
-    #topbar .logo {
-        font-size: 18px;
-        margin-left: 10px;
-    }
-
-    #topbar .container {
-        padding: 0 10px 0 0;
-    }
-
-    #content {
-        margin-left: 0;
-        padding: 15px;
-    }
-
-    #sidebar {
-        width: 100%;
-        transform: translateX(-100%);
-    }
-
-    #sidebar.collapsed {
-        transform: translateX(-100%);
-    }
-
-    #sidebar:not(.collapsed) {
-        transform: translateX(0);
-    }
-}
-
-@media (max-width: 480px) {
-    #topbar .logo {
-        font-size: 16px;
-    }
-
-    #topbar .container {
-        padding: 0 5px 0 0;
-    }
-
-    #content {
-        padding: 10px;
-    }
-}
-
-
 .theory-content {
     width: 100%;
     max-width: 800px;
@@ -261,4 +216,39 @@ body {
 
 .buttons button:hover {
     background-color: #dee2e6;
+}
+
+/* стили подвала */
+.site-footer {
+    background-color: #e7e9ef;
+    color: #4d4f69;
+    padding: 20px 20px;
+    margin-top: 30px;
+    margin-bottom: -20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.site-footer p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #4d4f69;
+}
+
+.site-footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.site-footer a:hover {
+    color: #0069d9;
+    text-decoration: underline;
 }

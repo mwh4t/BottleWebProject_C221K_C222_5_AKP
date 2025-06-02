@@ -52,41 +52,49 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+        <div class="panel" id="results-panel"
+             style="width: 80%;  margin: 0 auto;">
+        <h2>Результаты вычислений:</h2>
+        <div class="section">
+            <div class="description">
+                <h3>Эксцентриситет вершин:</h3>
+                <div id="eccentricity-result">Не рассчитано</div>
+            </div>
 
-            <div class="panel" id="results-panel" style="margin-top: 20px;">
-                <h2>Результаты вычислений:</h2>
-                <div class="section">
-                    <div class="description">
-                        <h3>Эксцентриситет вершин:</h3>
-                        <div id="eccentricity-result">Не рассчитано</div>
-                    </div>
+            <div class="description">
+                <h3>Радиус графа:</h3>
+                <div id="radius-result">Не рассчитано</div>
+            </div>
 
-                    <div class="description">
-                        <h3>Радиус графа:</h3>
-                        <div id="radius-result">Не рассчитано</div>
-                    </div>
+            <div class="description">
+                <h3>Диаметр графа:</h3>
+                <div id="diameter-result">Не рассчитано</div>
+            </div>
 
-                    <div class="description">
-                        <h3>Диаметр графа:</h3>
-                        <div id="diameter-result">Не рассчитано</div>
-                    </div>
+            <div class="description">
+                <h3>Центр графа:</h3>
+                <div id="center-result">Не рассчитано</div>
+            </div>
 
-                    <div class="description">
-                        <h3>Центр графа:</h3>
-                        <div id="center-result">Не рассчитано</div>
-                    </div>
+            <div class="description">
+                <h3>Периферия графа:</h3>
+                <div id="periphery-result">Не рассчитано</div>
+            </div>
 
-                    <div class="description">
-                        <h3>Периферия графа:</h3>
-                        <div id="periphery-result">Не рассчитано</div>
-                    </div>
-
-                    <div class="description">
-                        <h3>Плотность графа:</h3>
-                        <div id="density-result">Не рассчитано</div>
-                    </div>
-                </div>
+            <div class="description">
+                <h3>Плотность графа:</h3>
+                <div id="density-result">Не рассчитано</div>
             </div>
         </div>
     </div>
 </div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2025 Графовые задачи</p>
+        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">О проекте</a> |
+            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
+    </div>
+</footer>
