@@ -52,12 +52,12 @@ body {
 }
 
 #topbar .logo a {
-    color: #4d4f69;
+    color: #3a3c50;
     text-decoration: none;
 }
 
 #topbar .logo a:hover {
-    color: #3a3c50;
+    color: #4d4f69;
     text-decoration: none;
 }
 
@@ -69,14 +69,15 @@ body {
 }
 
 #topbar .top-nav a {
-    color: #4d4f69;
+    color: #3a3c50;
     text-decoration: none;
     padding: 10px 15px;
     transition: color 0.2s;
+    font-size: 20px;
 }
 
 #topbar .top-nav a:hover {
-    color: #3a3c50;
+    color: #4d4f69;
 }
 
 /* кнопка переключения сайдбара */
@@ -149,7 +150,7 @@ body {
 #sidebar .list-unstyled a:hover {
     color: #3a3c50;
     background-color: rgba(77, 79, 105, 0.08);
-    border-left-color: #17a2b8;
+    border-left-color: #007bff;
 }
 
 .theory-content {

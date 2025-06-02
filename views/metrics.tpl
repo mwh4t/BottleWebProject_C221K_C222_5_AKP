@@ -1,4 +1,4 @@
-% rebase('layout.tpl', title='Metrics')
+% rebase('layout.tpl', title='Расчёт метрик графа')
 <link rel="stylesheet" href="/static/content/graphs_styles.css">
 
 <div class="main-content">

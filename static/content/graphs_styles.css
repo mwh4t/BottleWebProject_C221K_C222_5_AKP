@@ -36,16 +36,17 @@ h3 {
 
 .buttons button {
     padding: 8px 15px;
-    background-color: #e9ecef;
+    background-color: #007bff;
     border: 1px solid #ced4da;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-family: Arial, sans-serif;
+    color: #fff;
 }
 
 .buttons button:hover {
-    background-color: #dee2e6;
+    background-color: #0069d9;
 }
 
 /* поля ввода */
