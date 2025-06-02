@@ -33,3 +33,8 @@ def hamilton():
 @view('metrics')
 def metrics():
     return
+
+@route('/theory')
+@view('theory')
+def theory():
+    return
