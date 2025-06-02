@@ -24,7 +24,7 @@
 
     <div class="buttons">
         <button id="calc-btn" type="button">Рассчитать</button>
-        <button id="teory-btn" type="button">К теории</button>
+        <button id="teory-btn" type="button" onclick=" location.href='theory'">К теории</button>
         <button id="example-btn" type="button">Пример</button>
     </div>
 
