@@ -292,3 +292,44 @@ h3 {
     background-color: #e7f5ff;
     outline: none;
 }
+/* Стили для страницы авторов */
+
+.authors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.author-card {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.2s;
+}
+
+    .author-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .author-card h2 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    .author-card p {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .author-card a {
+        color: #2980b9;
+        text-decoration: none;
+    }
+
+        .author-card a:hover {
+            text-decoration: underline;
+        }
