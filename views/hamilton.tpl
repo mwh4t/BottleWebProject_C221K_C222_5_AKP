@@ -1,70 +1,134 @@
-% rebase('layout.tpl', title='hemilton') 
-<!-- Подключение шаблона layout.tpl с заголовком страницы "hemilton" -->
-
+% rebase('layout.tpl', title='hamilton')
 <link rel="stylesheet" href="/static/content/graphs_styles.css">
-<!-- Подключение внешнего CSS-файла со всеми стилями -->
 
-<div class="math-intro">
-</div>
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8"> <!-- Установка кодировки на UTF-8 -->
-    <title>Поиск гамильтонова цикла</title> <!-- Заголовок страницы -->
-</head>
-<body>
-
-    <div class="main-content">
-        <!-- Основной заголовок страницы -->
-        <h1>Поиск гамильтонова цикла или цепи</h1>
-
-        <!-- Форма для ввода матрицы смежности -->
-        <form id="hamilton-form" class="matrix-input">
-            <label for="adj-matrix">
-                Введите матрицу смежности (через пробелы и переносы строк):
-            </label><br>
-
-            <!-- Многострочное текстовое поле для ввода матрицы -->
-            <textarea id="adj-matrix" name="adj-matrix" placeholder="Пример:
-0 1 1 0
-1 0 1 1
-1 1 0 1
-0 1 1 0"></textarea>
-
-            <!-- Кнопки действия -->
-            <div class="buttons">
-                <!-- Кнопка для запуска расчета -->
-                <button type="button" id="calculate">Рассчитать</button>
-
-                <!-- Кнопка для перехода на страницу с теоретическим материалом -->
-                <button type="button" onclick="window.location.href='/theory'">
-                    Перейти к теории
-                </button>
-            </div>
-        </form>
-
-        <!-- Блок заголовка для визуализации -->
-        <h2>Визуализация графа:</h2>
-
-        <!-- Контейнер, где будет отрисован граф -->
-        <div class="graph-output">
-            <div id="graph-canvas">
-                <!-- Здесь появится визуализация графа -->
-            </div>
-        </div>
+<div class="main-content">
+    <div class="math-intro">
+        <h1>Поиск Гамильтонова цикла</h1>
     </div>
 
-    <!-- Скрипт, обрабатывающий нажатие на кнопку "Рассчитать" -->
-    <script>
-        document.getElementById("calculate").addEventListener("click", function() {
-            const matrixText = document.getElementById("adj-matrix").value;
-            // Вывод содержимого матрицы в консоль для проверки (можно убрать на продакшене)
-            console.log("Расчет по введенной матрице:", matrixText);
+    <!-- Форма ввода матрицы -->
+    <div class="matrix-input">
+        <h2>Матрица смежности:</h2>
+        <form action="/hamilton" method="POST" id="matrix-form">
+            <div class="matrix-controls">
+                <label>Количество вершин (1-20):
+                    <input type="number" id="matrix-size" name="size" min="1" max="20" value="4">
+                </label>
+            </div>
+            
+            <div class="matrix-container" id="matrix-container">
+                <!-- Таблица сгенерирована JavaScript -->
+            </div>
+        </form>
+    </div>
 
-            // Здесь будет код вызова визуализации (например, через библиотеку D3.js или vis.js)
+    <div class="buttons">
+        <button id="calc-btn" type="submit" form="matrix-form">Рассчитать</button>
+        <button id="teory-btn" type="button">К теории</button>
+        <button id="example-btn" type="button">Пример</button>
+    </div>
+
+    <!-- Область вывода графика -->
+    <div class="graph-output">
+        <h2>Визуализация графа:</h2>
+        <div class="graph-container">
+            <canvas id="graph-canvas"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    function generateMatrix(size) {
+        const container = document.getElementById('matrix-container');
+        let tableHTML = '<table class="matrix-table"><tr><th></th>';
+        
+        for (let i = 0; i < size; i++) {
+            tableHTML += `<th>${i+1}</th>`;
+        }
+        tableHTML += '</tr>';
+        
+        for (let i = 0; i < size; i++) {
+            tableHTML += `<tr><th>${i+1}</th>`;
+            for (let j = 0; j < size; j++) {
+                const disabled = i === j ? 'disabled' : '';
+                const value = i === j ? '0' : '';
+                tableHTML += `
+                    <td>
+                        <input type="number" name="cell-${i}-${j}" 
+                               class="matrix-cell" min="0" max="1" 
+                               value="${value}" ${disabled}>
+                    </td>`;
+            }
+            tableHTML += '</tr>';
+        }
+        tableHTML += '</table>';
+        
+        container.innerHTML = tableHTML;
+
+        document.querySelectorAll('.matrix-cell').forEach(cell => {
+            cell.addEventListener('change', function() {
+                if (this.value !== '0' && this.value !== '1') {
+                    this.style.backgroundColor = '#ffe3e3';
+                    setTimeout(() => {
+                        if (this.value !== '0' && this.value !== '1') {
+                            this.value = '';
+                        }
+                        this.style.backgroundColor = '';
+                    }, 1000);
+                }
+            });
         });
-    </script>
+    }
 
-</body>
-</html>
+    function loadExample() {
+        const exampleMatrix = [
+            [0, 1, 1, 0],
+            [1, 0, 1, 1],
+            [1, 1, 0, 1],
+            [0, 1, 1, 0]
+        ];
+        
+        document.getElementById('matrix-size').value = 4;
+        generateMatrix(4);
+        
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (i !== j) {
+                    const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                    if (cell) cell.value = exampleMatrix[i][j];
+                }
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        generateMatrix(4);
+        
+        document.getElementById('matrix-size').addEventListener('change', function() {
+            generateMatrix(parseInt(this.value));
+        });
+        
+        document.getElementById('example-btn').addEventListener('click', loadExample);
+        
+        document.getElementById('matrix-form').addEventListener('submit', function(e) {
+            const size = parseInt(document.getElementById('matrix-size').value);
+            let isValid = true;
+            
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    if (i === j) continue;
+                    const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                    if (cell && cell.value !== '0' && cell.value !== '1') {
+                        cell.style.backgroundColor = '#ffe3e3';
+                        isValid = false;
+                    }
+                }
+            }
+            
+            if (!isValid) {
+                alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
+                e.preventDefault();
+            }
+        });
+    });
+</script>
