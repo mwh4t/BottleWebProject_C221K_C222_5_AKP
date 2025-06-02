@@ -47,5 +47,16 @@
     <script src="/static/scripts/bootstrap.js"></script>
     <script src="/static/scripts/respond.js"></script>
     <script src="/static/scripts/site.js"></script>
+
+        <!-- подвал -->
+    <footer style="margin-top: 40px; padding: 20px; background-color: #f2f2f2; text-align: center; border-top: 1px solid #ddd;">
+        <p>&copy; {{year}} Графовые задачи. Все права защищены.</p>
+        <p>
+            <a href="/">Главная</a> |
+            <a href="/about">О нас</a> |
+            <a href="/contacts">Контакты</a>
+        </p>
+    </footer>
+
 </body>
 </html>

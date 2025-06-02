@@ -1,3 +1,4 @@
+
 import bottle
 import os
 import sys
@@ -7,7 +8,7 @@ import routes
 if '--debug' in sys.argv[1:] or 'SERVER_DEBUG' in os.environ:
     bottle.debug(True)
 
-def wsgi_app():
+def wsgi_app(): 
     return bottle.default_app()
 
 if __name__ == '__main__':
@@ -17,6 +18,10 @@ if __name__ == '__main__':
     HOST = os.environ.get('SERVER_HOST', 'localhost')
     PORT = os.environ.get('SERVER_PORT', 5555)
 
+    from datetime import datetime  
+    bottle.BaseTemplate.defaults['year'] = datetime.now().year
+
+    
     @bottle.route('/static/<filepath:path>')
     def server_static(filepath):
         return bottle.static_file(filepath, root=STATIC_ROOT)
