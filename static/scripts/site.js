@@ -1,3 +1,4 @@
+// выдвижение сайдбара
 $(document).ready(function() {
     if ($('#sidebar').hasClass('collapsed')) {
         $('#content').addClass('expanded');
@@ -12,14 +13,20 @@ $(document).ready(function() {
 
 
 
+// обработка textarea с номерами строк
 document.addEventListener('DOMContentLoaded', function() {
-    const nodeCountTextarea = document.getElementById('node-count-textarea');
-    const graphDataTextarea = document.getElementById('graph-data-textarea');
+    const nodeCountTextarea =
+        document.getElementById('node-count-textarea');
+    const graphDataTextarea =
+        document.getElementById('graph-data-textarea');
 
     if (nodeCountTextarea || graphDataTextarea) {
-        const nodeCountLines = document.getElementById('node-count-lines');
-        const graphDataLines = document.getElementById('graph-data-lines');
+        const nodeCountLines =
+            document.getElementById('node-count-lines');
+        const graphDataLines =
+            document.getElementById('graph-data-lines');
 
+        // обновление номеров строк
         function updateLineNumbers(textarea, lineNumbersDiv) {
             const lines = textarea.value.split('\n');
             const lineCount = lines.length;
@@ -30,66 +37,80 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             lineNumbersDiv.innerHTML = numbersHTML;
 
-            textarea.style.height = 'auto';
-            const lineHeight = parseInt(getComputedStyle(textarea).lineHeight);
-            const paddingTop = parseInt(getComputedStyle(textarea).paddingTop);
-            const paddingBottom = parseInt(getComputedStyle(textarea).paddingBottom);
+            // фиксированная высота
+            const fixedLineHeight = '20px';
+            lineNumbersDiv.style.lineHeight = fixedLineHeight;
+            textarea.style.lineHeight = fixedLineHeight;
 
-            const newHeight = (lineCount * (isNaN(lineHeight) ? 20 : lineHeight)) +
-                              paddingTop + paddingBottom;
+            const paddingTop =
+                parseInt(getComputedStyle(textarea).paddingTop);
+            const paddingBottom =
+                parseInt(getComputedStyle(textarea).paddingBottom);
 
-            const minHeight = parseInt(textarea.getAttribute('rows')) *
-                             (isNaN(lineHeight) ? 20 : lineHeight) +
-                             paddingTop + paddingBottom;
+            const newHeight =
+                (lineCount * parseInt(fixedLineHeight)) + paddingTop + paddingBottom;
+            const minHeight =
+                parseInt(textarea.getAttribute('rows')) * parseInt(fixedLineHeight) + paddingTop + paddingBottom;
 
             textarea.style.height = Math.max(newHeight, minHeight) + 'px';
-
             lineNumbersDiv.style.height = textarea.style.height;
         }
 
-        function loadExample() {
-            if (nodeCountTextarea) {
-                nodeCountTextarea.value = '3';
-                updateLineNumbers(nodeCountTextarea, nodeCountLines);
+        // ограничение строк
+        function limitLines(textarea, maxLines) {
+            const lines = textarea.value.split('\n');
+            if (lines.length > maxLines) {
+                textarea.value = lines.slice(0, maxLines).join('\n');
+                return true;
             }
-
-            if (graphDataTextarea) {
-                graphDataTextarea.value = `1
-2
-3
-1 2
-2 3
-3 1`;
-                updateLineNumbers(graphDataTextarea, graphDataLines);
-            }
+            return false;
         }
 
         if (nodeCountTextarea && nodeCountLines) {
-            nodeCountTextarea.addEventListener('input', function() {
+            nodeCountTextarea.addEventListener('input',
+                function() {
+                if (limitLines(this, 1)) {
+                    // позиционирование курсора в конец
+                    this.selectionStart = this.selectionEnd = this.value.length;
+                }
                 updateLineNumbers(this, nodeCountLines);
             });
 
-            nodeCountTextarea.addEventListener('keydown', function(e) {
-                setTimeout(() => updateLineNumbers(this, nodeCountLines), 0);
+            nodeCountTextarea.addEventListener('keydown',
+                function(e) {
+                // предотвращение ввода новой строки
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                } else {
+                    setTimeout(() => {
+                        limitLines(this, 1);
+                        updateLineNumbers(this, nodeCountLines);
+                    }, 0);
+                }
             });
         }
 
         if (graphDataTextarea && graphDataLines) {
-            graphDataTextarea.addEventListener('input', function() {
+            graphDataTextarea.addEventListener('input',
+                function() {
+                if (limitLines(this, 20)) {
+                    // позиционирование курсора в конец
+                    this.selectionStart = this.selectionEnd = this.value.length;
+                }
                 updateLineNumbers(this, graphDataLines);
             });
 
-            graphDataTextarea.addEventListener('keydown', function(e) {
-                setTimeout(() => updateLineNumbers(this, graphDataLines), 0);
+            graphDataTextarea.addEventListener('keydown',
+                function(e) {
+                setTimeout(() => {
+                    limitLines(this, 20);
+                    updateLineNumbers(this, graphDataLines);
+                }, 0);
             });
         }
 
-        const exampleBtn = document.getElementById('example-btn');
-        if (exampleBtn) {
-            exampleBtn.addEventListener('click', loadExample);
-        }
-
-        const calcBtn = document.getElementById('calc-btn');
+        const calcBtn =
+            document.getElementById('calc-btn');
         if (calcBtn) {
             calcBtn.addEventListener('click', function() {
                 alert('Функция расчёта будет добавлена позже');
@@ -97,9 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (nodeCountTextarea && nodeCountLines) {
+            limitLines(nodeCountTextarea, 1);
             updateLineNumbers(nodeCountTextarea, nodeCountLines);
         }
         if (graphDataTextarea && graphDataLines) {
+            limitLines(graphDataTextarea, 20);
             updateLineNumbers(graphDataTextarea, graphDataLines);
         }
     }
