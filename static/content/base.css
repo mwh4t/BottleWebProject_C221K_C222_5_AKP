@@ -144,7 +144,7 @@ body {
     display: block;
     padding: 12px 20px;
     transition: all 0.2s ease;
-    border-left: 3px solid transparent;
+    border-left: 3px solid #007bff;
 }
 
 #sidebar .list-unstyled a:hover {

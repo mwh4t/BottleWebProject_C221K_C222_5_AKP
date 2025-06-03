@@ -37,98 +37,10 @@
     </div>
 </div>
 
-<script>
-    function generateMatrix(size) {
-        const container = document.getElementById('matrix-container');
-        let tableHTML = '<table class="matrix-table"><tr><th></th>';
-        
-        for (let i = 0; i < size; i++) {
-            tableHTML += `<th>${i+1}</th>`;
-        }
-        tableHTML += '</tr>';
-        
-        for (let i = 0; i < size; i++) {
-            tableHTML += `<tr><th>${i+1}</th>`;
-            for (let j = 0; j < size; j++) {
-                const disabled = i === j ? 'disabled' : '';
-                const value = i === j ? '0' : '';
-                tableHTML += `
-                    <td>
-                        <input type="number" name="cell-${i}-${j}" 
-                               class="matrix-cell" min="0" max="1" 
-                               value="${value}" ${disabled}>
-                    </td>`;
-            }
-            tableHTML += '</tr>';
-        }
-        tableHTML += '</table>';
-        
-        container.innerHTML = tableHTML;
-
-        document.querySelectorAll('.matrix-cell').forEach(cell => {
-            cell.addEventListener('change', function() {
-                if (this.value !== '0' && this.value !== '1') {
-                    this.style.backgroundColor = '#ffe3e3';
-                    setTimeout(() => {
-                        if (this.value !== '0' && this.value !== '1') {
-                            this.value = '';
-                        }
-                        this.style.backgroundColor = '';
-                    }, 1000);
-                }
-            });
-        });
-    }
-
-    function loadExample() {
-        const exampleMatrix = [
-            [0, 1, 1, 0],
-            [1, 0, 1, 1],
-            [1, 1, 0, 1],
-            [0, 1, 1, 0]
-        ];
-        
-        document.getElementById('matrix-size').value = 4;
-        generateMatrix(4);
-        
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 4; j++) {
-                if (i !== j) {
-                    const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
-                    if (cell) cell.value = exampleMatrix[i][j];
-                }
-            }
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        generateMatrix(4);
-        
-        document.getElementById('matrix-size').addEventListener('change', function() {
-            generateMatrix(parseInt(this.value));
-        });
-        
-        document.getElementById('example-btn').addEventListener('click', loadExample);
-        
-        document.getElementById('matrix-form').addEventListener('submit', function(e) {
-            const size = parseInt(document.getElementById('matrix-size').value);
-            let isValid = true;
-            
-            for (let i = 0; i < size; i++) {
-                for (let j = 0; j < size; j++) {
-                    if (i === j) continue;
-                    const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
-                    if (cell && cell.value !== '0' && cell.value !== '1') {
-                        cell.style.backgroundColor = '#ffe3e3';
-                        isValid = false;
-                    }
-                }
-            }
-            
-            if (!isValid) {
-                alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
-                e.preventDefault();
-            }
-        });
-    });
-</script>
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2025 Графовые задачи</p>
+        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
+            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
+    </div>
+</footer>

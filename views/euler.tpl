@@ -40,7 +40,7 @@
 <footer class="site-footer">
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
-        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">О проекте</a> |
+        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
             <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
     </div>
 </footer>

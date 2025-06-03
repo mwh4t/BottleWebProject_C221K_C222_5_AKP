@@ -46,7 +46,6 @@
         <!-- правая панель -->
         <div class="right-panel">
             <div class="graph-output">
-                <h2>Визуализация графа:</h2>
                 <div class="graph-container">
                     <div class="graph-placeholder">
                         Область для отображения графа
@@ -55,8 +54,7 @@
             </div>
         </div>
     </div>
-        <div class="panel" id="results-panel"
-             style="width: 80%;  margin: 0 auto;">
+        <div class="panel" id="results-panel">
         <h2>Результаты вычислений:</h2>
         <div class="section">
             <div class="description">
@@ -95,7 +93,7 @@
 <footer class="site-footer">
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
-        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">О проекте</a> |
+        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
             <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
     </div>
 </footer>

@@ -42,6 +42,7 @@ h3 {
     cursor: pointer;
     transition: background-color 0.3s;
     font-family: Arial, sans-serif;
+    font-size: 18px;
     color: #fff;
 }
 
@@ -82,19 +83,19 @@ h3 {
     border: 2px solid #333;
     border-radius: 8px;
     padding: 20px;
-    min-height: 230px;
+    min-height: 272px;
 }
 
 .graph-container {
     position: relative;
-    min-height: 230px;
+    min-height: 272px;
 }
 
 .graph-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 230px;
+    height: 272px;
     border: 1px solid #dee2e6;
     border-radius: 4px;
     color: #6c757d;
@@ -129,6 +130,11 @@ h3 {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+#results-panel {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .left-panel {
