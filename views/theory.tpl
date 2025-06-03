@@ -178,6 +178,7 @@
                 <div class="buttons">
                     <button type="button" onclick="location.href='metrics'">К расчётам</button>
                 </div>
+            </div>
         </div>
     </div>
 </div>
