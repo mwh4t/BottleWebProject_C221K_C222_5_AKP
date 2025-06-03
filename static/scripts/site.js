@@ -130,18 +130,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Функция генерации матрицы
+// функция генерации матрицы
 function generateMatrix(size) {
-    const container = document.getElementById('matrix-container');
+    const container = document
+        .getElementById('matrix-container');
     let tableHTML = '<table class="matrix-table"><tr><th></th>';
 
-    // Заголовки столбцов
+    // заголовки столбцов
     for (let i = 0; i < size; i++) {
         tableHTML += `<th>${i+1}</th>`;
     }
     tableHTML += '</tr>';
 
-    // Тело матрицы
+    // тело матрицы
     for (let i = 0; i < size; i++) {
         tableHTML += `<tr><th>${i+1}</th>`;
         for (let j = 0; j < size; j++) {
@@ -160,8 +161,9 @@ function generateMatrix(size) {
 
     container.innerHTML = tableHTML;
 
-    // Добавляем валидацию
-    document.querySelectorAll('.matrix-cell').forEach(cell => {
+    // добавляем валидацию
+    document.querySelectorAll('.matrix-cell')
+        .forEach(cell => {
         cell.addEventListener('change', function() {
             if (this.value !== '0' && this.value !== '1') {
                 this.style.backgroundColor = '#ffe3e3';
@@ -176,7 +178,7 @@ function generateMatrix(size) {
     });
 }
 
-// Генерация примера
+// генерация примера
 function loadExample() {
     const exampleMatrix = [
         [0, 1, 0, 1],
@@ -192,35 +194,42 @@ function loadExample() {
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
             if (i !== j) {
-                const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                const cell = document
+                    .querySelector(`input[name="cell-${i}-${j}"]`);
                 if (cell) cell.value = exampleMatrix[i][j];
             }
         }
     }
 }
 
-// Инициализация при загрузке
-document.addEventListener('DOMContentLoaded', () => {
+// инициализация при загрузке
+document.addEventListener('DOMContentLoaded',
+    () => {
     generateMatrix(3);
 
-    // Обработчик изменения размера
-    document.getElementById('matrix-size').addEventListener('change', function() {
+    // обработчик изменения размера
+    document.getElementById('matrix-size')
+        .addEventListener('change', function() {
         generateMatrix(parseInt(this.value));
     });
 
-    // Обработчик кнопки примера
-    document.getElementById('example-btn').addEventListener('click', loadExample);
+    // обработчик кнопки примера
+    document.getElementById('example-btn')
+        .addEventListener('click', loadExample);
 
-    // Обработчик отправки формы
-    document.getElementById('matrix-form').addEventListener('submit', function(e) {
-        const size = parseInt(document.getElementById('matrix-size').value);
+    // обработчик отправки формы
+    document.getElementById('matrix-form')
+        .addEventListener('submit', function(e) {
+        const size = parseInt(document
+            .getElementById('matrix-size').value);
         let isValid = true;
 
-        // Проверка значений
+        // проверка значений
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size; j++) {
                 if (i === j) continue;
-                const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                const cell = document
+                    .querySelector(`input[name="cell-${i}-${j}"]`);
                 if (cell && cell.value !== '0' && cell.value !== '1') {
                     cell.style.backgroundColor = '#ffe3e3';
                     isValid = false;

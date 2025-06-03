@@ -24,7 +24,7 @@
 
     <div class="buttons">
         <button id="calc-btn" type="button">Рассчитать</button>
-        <button id="teory-btn" type="button" onclick=" location.href='theory'">К теории</button>
+        <button id="theory-btn" type="button" onclick="location.href='/theory#euler-theory'">К теории</button>
         <button id="example-btn" type="button">Пример</button>
     </div>
 
@@ -40,7 +40,7 @@
 <footer class="site-footer">
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
-        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">О проекте</a> |
+        <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
             <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
     </div>
 </footer>

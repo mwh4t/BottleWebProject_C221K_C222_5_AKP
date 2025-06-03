@@ -31,9 +31,14 @@
         <!-- боковая панель -->
         <nav id="sidebar" class="collapsed">
             <ul class="list-unstyled components">
+                <li><h2>Расчёты:</h2></li>
                 <li><a href="/euler">Поиск Эйлерова цикла</a></li>
                 <li><a href="/hamilton">Поиск Гамильтонова цикла</a></li>
                 <li><a href="/metrics">Расчёт метрик</a></li>
+                <li><h2>Теория:</h2></li>
+                <li><a href="/theory#euler-theory">Эйлеровы циклы</a></li>
+                <li><a href="/theory#hamilton-theory">Гамильтоновы циклы</a></li>
+                <li><a href="/theory#metrics-theory">Метрики графов</a></li>
             </ul>
         </nav>
 
