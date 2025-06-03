@@ -144,7 +144,7 @@ body {
     display: block;
     padding: 12px 20px;
     transition: all 0.2s ease;
-    border-left: 3px solid #007bff;
+    border-left: 3px solid transparent;
 }
 
 #sidebar .list-unstyled a:hover {
@@ -240,7 +240,7 @@ body {
 }
 
 .site-footer p {
-    margin: 5px 0;
+    margin: 15px 0;
     font-size: 16px;
     color: #4d4f69;
 }

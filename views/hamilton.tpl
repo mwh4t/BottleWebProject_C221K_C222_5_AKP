@@ -24,7 +24,7 @@
 
     <div class="buttons">
         <button id="calc-btn" type="submit" form="matrix-form">Рассчитать</button>
-        <button id="teory-btn" type="button">К теории</button>
+        <button id="theory-btn" type="button" onclick="location.href='/theory#hamilton-theory'">К теории</button>
         <button id="example-btn" type="button">Пример</button>
     </div>
 
