@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-        <div class="panel" id="results-panel">
+    <div class="panel" id="results-panel">
         <h2>Результаты вычислений:</h2>
         <div class="section">
             <div class="description">
@@ -94,6 +94,7 @@
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
         <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
-            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
+            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a>
+        </p>
     </div>
 </footer>
