@@ -31,48 +31,22 @@ h3 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 .buttons button {
+    padding: 8px 15px;
     background-color: #007bff;
-    padding: 12px 25px;
     border: 1px solid #ced4da;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: background-color 0.3s;
     font-family: Arial, sans-serif;
     color: #fff;
 }
 
 .buttons button:hover {
     background-color: #0069d9;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Специальные стили для кнопки "Рассчитать" */
-#calc-btn {
-    background-color: #007bff; 
-    color: white;
-    border-color: #0069d9;
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
-    padding: 14px 30px; 
-}
-
-#calc-btn:hover {
-    background-color: #0069d9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
-}
-
-/* Стили для остальных кнопок */
-.buttons button:not(#calc-btn) {
-    background-color: #e9ecef;
-}
-
-.buttons button:not(#calc-btn):hover {
-    background-color: #dee2e6;
 }
 
 /* поля ввода */
@@ -201,7 +175,7 @@ h3 {
 }
 
 #metrics-calc-btn {
-    width: 100%;
+    width: 80%;
 }
 
 .node-count-field {
@@ -242,27 +216,15 @@ h3 {
 
 .matrix-container {
     overflow-x: auto;
-    max-width: 60%; /* Ограничиваем ширину */
+    max-width: 60%;
     margin: 0 auto;
-    transition: max-width 0.3s; /* Плавное изменение */
+    transition: max-width 0.3s;
 }
 
 .matrix-table {
-    width: auto; /* Автоматическая ширина */
+    width: auto;
     margin: 10px auto;
-    min-width: 300px; /* Минимальная ширина */
-}
-
-@media (max-width: 1200px) {
-    .matrix-container {
-        max-width: 80%;
-    }
-}
-
-@media (max-width: 768px) {
-    .matrix-container {
-        max-width: 100%;
-    }
+    min-width: 300px;
 }
 
 .matrix-table th {
@@ -298,44 +260,3 @@ h3 {
     background-color: #e7f5ff;
     outline: none;
 }
-/* Стили для страницы авторов */
-
-.authors-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.author-card {
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    padding: 20px;
-    width: 300px;
-    transition: transform 0.2s;
-}
-
-    .author-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .author-card h2 {
-        margin-top: 0;
-        color: #2c3e50;
-    }
-
-    .author-card p {
-        font-size: 15px;
-        line-height: 1.4;
-    }
-
-    .author-card a {
-        color: #2980b9;
-        text-decoration: none;
-    }
-
-        .author-card a:hover {
-            text-decoration: underline;
-        }
