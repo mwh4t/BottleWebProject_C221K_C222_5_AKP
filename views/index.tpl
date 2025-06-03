@@ -69,8 +69,7 @@
         </div>
     </div>
 </div>
-    
-
+ 
 <footer class="site-footer">
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
