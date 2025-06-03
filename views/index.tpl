@@ -1,4 +1,5 @@
 % rebase('layout.tpl', title='Главная страница', year=year)
+<link rel="stylesheet" href="/static/content/base.css">
 
 <div class="math-intro">
     <div class="main-content">
@@ -23,7 +24,9 @@
             <p><strong>Эйлеров цикл</strong> — это замкнутый путь в графе, который проходит через каждое ребро
             ровно один раз и возвращается в начальную вершину. </p>
             <p>Подробнее изучить теорию или произвести рассёт можно на странице поиска Эйлерова цикла.</p>
-            <button onclick="location.href='euler'">Перейти →</button>
+                <div class="buttons">
+                    <button type="button" onclick="location.href='/theory#euler-theory'">Перейти</button>
+                </div>
             </div>
         </div>
             
@@ -33,19 +36,23 @@
                 <p><strong>Гамильтонов цикл</strong> — это замкнутый путь в графе, который проходит через каждую вершину
                 ровно один раз и возвращается в начальную точку.</p>
                 <p>Подробнее изучить теорию или произвести рассёт можно на странице поиска Гамильтонов цикла.</p>
-                <button onclick="location.href='hamilton'">Перейти →</button>
+                <div class="buttons">
+                    <button type="button" onclick="location.href='/theory#gamilton-theory'">Перейти</button>
+                </div>
             </div>
         </div>
 
         <div class="theory-content">
             <div class="theory-text">
-                <h3>Метрики графов (Корзунов Мирослав)</h3>
+                <h3>Метрики графов (Корзунов Матвей)</h3>
                 <p><strong>Эксцентриситет вершины</strong> — максимальное расстояние от данной вершины
                 до всех остальных в графе. Обозначается как ecc(v).</p>
                 <p><strong>Радиус графа</strong> — минимальный эксцентриситет среди всех вершин: R = min(ecc(v)).</p>
                 <p><strong>Диаметр графа</strong> — максимальный эксцентриситет: D = max(ecc(v)).</p>
                 <p>Подробнее изучить теорию или произвести рассёт можно на странице поиска рассёта метрик.</p>
-                <button onclick="location.href='metrics'">Перейти →</button>
+                <div class="buttons">
+                    <button type="button" onclick="location.href='/theory#metrics-theory'">Перейти</button>
+                </div>
             </div>
         </div>
 
@@ -63,8 +70,10 @@
         <div class="theory-content">
             <h2>Нашли баг или ошибку?</h2>
             <div class="theory-text">
-                <p>1. Напиши нам на почту →</p>
-                <button onclick="location.href='about'">Перейти →</button>
+                <p>Напиши нам на почту →</p>
+                <div class="buttons">
+                    <button onclick="location.href='about'">Перейти</button>
+                </div>
             </div>
         </div>
     </div>
