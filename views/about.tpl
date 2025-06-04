@@ -13,17 +13,18 @@
             <p><strong>Почта:</strong> <a href="mailto:abashev_1999@inbox.ru">abashev_1999@inbox.ru</a></p>
             <p><strong>Вклад:</strong><br>Реализовал алгоритм поиска <em>Эйлерова цикла</em>.</p>
         </div>
-        
+
         <div class="author-card">
             <h2>Покровская Елизавета</h2>
             <p><strong>Почта:</strong> <a href="mailto:elizavettastorm@yandex.ru">elizavettastorm@yandex.ru</a></p>
             <p><strong>Вклад:</strong><br>Разработала модуль поиска <em>Гамильтонова цикла</em>.</p>
         </div>
-        
+
         <div class="author-card">
             <h2>Матвей Корзунов</h2>
             <p><strong>Почта:</strong> <a href="mailto:korzunov.matvey@yandex.ru">korzunov.matvey@yandex.ru</a></p>
-            <p><strong>Вклад:</strong><br>Выполнил расчет <em>метрик графа</em> (степени, компоненты, плотность и др.).</p>
+            <p><strong>Вклад:</strong><br>Выполнил расчет <em>метрик графа</em> (степени, компоненты, плотность и др.).
+            </p>
         </div>
     </div>
 </div>
@@ -32,6 +33,7 @@
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
         <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
-            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
+            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a>
+        </p>
     </div>
 </footer>
