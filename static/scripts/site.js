@@ -243,11 +243,9 @@ document.addEventListener('DOMContentLoaded',
                 }
             });
     });
-});
 
 
-
-// функция расчёта эйлерова цикла
+//Добавленно, при созании логики рабоыт Эйлерова цикла
 function calculateEulerCycle() {
     const form = document.getElementById('matrix-form');
     const formData = new FormData(form);
@@ -268,27 +266,27 @@ function calculateEulerCycle() {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        // Убираем индикатор загрузки
-        const loading = document.getElementById('loading');
-        if (loading) loading.remove();
+        .then(response => response.json())
+        .then(data => {
+            // Убираем индикатор загрузки
+            const loading = document.getElementById('loading');
+            if (loading) loading.remove();
 
-        if (data.success) {
-            displayResult(data);
-        } else {
-            displayError(data.error || data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
-        displayError('Произошла ошибка при соединении с сервером');
-    })
-    .finally(() => {
-        // Разблокируем кнопку
-        calcBtn.disabled = false;
-        calcBtn.textContent = 'Рассчитать';
-    });
+            if (data.success) {
+                displayResult(data);
+            } else {
+                displayError(data.error || data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            displayError('Произошла ошибка при соединении с сервером');
+        })
+        .finally(() => {
+            // Разблокируем кнопку
+            calcBtn.disabled = false;
+            calcBtn.textContent = 'Рассчитать';
+        });
 }
 
 // функция отображения результата
@@ -331,9 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // обработчик изменения размера
     document.getElementById('matrix-size')
-        .addEventListener('change', function() {
-        generateMatrix(parseInt(this.value));
-    });
+        .addEventListener('change', function () {
+            generateMatrix(parseInt(this.value));
+        });
 
     // обработчик кнопки примера
     document.getElementById('example-btn')
@@ -342,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // обработчик кнопки расчёта
     const calcBtn = document.getElementById('calc-btn');
     if (calcBtn) {
-        calcBtn.addEventListener('click', function() {
+        calcBtn.addEventListener('click', function () {
             // Проверяем валидность формы перед отправкой
             const size = parseInt(document.getElementById('matrix-size').value);
             let isValid = true;
@@ -370,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // обработчик отправки формы (для предотвращения стандартной отправки)
     document.getElementById('matrix-form')
-        .addEventListener('submit', function(e) {
-        e.preventDefault();
-        calculateEulerCycle();
-    });
+        .addEventListener('submit', function (e) {
+            e.preventDefault();
+            calculateEulerCycle();
+        });
 });
