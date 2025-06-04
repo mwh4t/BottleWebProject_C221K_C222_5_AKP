@@ -220,7 +220,7 @@ def create_graph_visualization(adjacency_matrix, cycle=None, message=""):
     nx.draw_networkx_edges(G, pos, edge_color=edge_colors,
                            width=2, alpha=0.7)
 
-    # Подписи вершин
+    # Подписи вершин графа
     labels = {i: str(i + 1) for i in range(n)}
     nx.draw_networkx_labels(G, pos, labels, font_size=16, font_weight='bold')
 
