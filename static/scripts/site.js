@@ -12,6 +12,7 @@ $(document).ready(function () {
 });
 
 
+
 // обработка textarea с номерами строк
 document.addEventListener('DOMContentLoaded', function () {
     const nodeCountTextarea =
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
 // функция генерации матрицы
 function generateMatrix(size) {
     const container = document
@@ -241,3 +243,135 @@ document.addEventListener('DOMContentLoaded',
                 }
             });
     });
+});
+
+
+
+// функция расчёта эйлерова цикла
+function calculateEulerCycle() {
+    const form = document.getElementById('matrix-form');
+    const formData = new FormData(form);
+    const calcBtn = document.getElementById('calc-btn');
+    const canvas = document.getElementById('graph-canvas');
+    const graphContainer = document.querySelector('.graph-container');
+
+    // Блокируем кнопку на время расчёта
+    calcBtn.disabled = true;
+    calcBtn.textContent = 'Рассчитываем...';
+
+    // Очищаем предыдущий результат
+    canvas.style.display = 'none';
+    graphContainer.innerHTML = '<canvas id="graph-canvas"></canvas><div id="loading">Обработка данных...</div>';
+
+    // Отправляем запрос
+    fetch('/calculate', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Убираем индикатор загрузки
+        const loading = document.getElementById('loading');
+        if (loading) loading.remove();
+
+        if (data.success) {
+            displayResult(data);
+        } else {
+            displayError(data.error || data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        displayError('Произошла ошибка при соединении с сервером');
+    })
+    .finally(() => {
+        // Разблокируем кнопку
+        calcBtn.disabled = false;
+        calcBtn.textContent = 'Рассчитать';
+    });
+}
+
+// функция отображения результата
+function displayResult(data) {
+    const graphContainer = document.querySelector('.graph-container');
+
+    // Создаём элемент для отображения изображения
+    const resultHTML = `
+        <div class="result-container">
+            <div class="result-message">
+                <h3>${data.message}</h3>
+                ${data.cycle ? `<p><strong>Найденный путь:</strong> ${data.cycle.map(v => v + 1).join(' → ')}</p>` : ''}
+            </div>
+            <div class="graph-image">
+                <img src="data:image/png;base64,${data.image}" alt="Визуализация графа" />
+            </div>
+        </div>
+    `;
+
+    graphContainer.innerHTML = resultHTML;
+}
+
+// функция отображения ошибки
+function displayError(errorMessage) {
+    const graphContainer = document.querySelector('.graph-container');
+
+    const errorHTML = `
+        <div class="error-container">
+            <h3>Ошибка</h3>
+            <p>${errorMessage}</p>
+        </div>
+    `;
+
+    graphContainer.innerHTML = errorHTML;
+}
+
+// инициализация при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    generateMatrix(3);
+
+    // обработчик изменения размера
+    document.getElementById('matrix-size')
+        .addEventListener('change', function() {
+        generateMatrix(parseInt(this.value));
+    });
+
+    // обработчик кнопки примера
+    document.getElementById('example-btn')
+        .addEventListener('click', loadExample);
+
+    // обработчик кнопки расчёта
+    const calcBtn = document.getElementById('calc-btn');
+    if (calcBtn) {
+        calcBtn.addEventListener('click', function() {
+            // Проверяем валидность формы перед отправкой
+            const size = parseInt(document.getElementById('matrix-size').value);
+            let isValid = true;
+
+            // проверка значений
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    if (i === j) continue;
+                    const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                    if (cell && cell.value !== '0' && cell.value !== '1') {
+                        cell.style.backgroundColor = '#ffe3e3';
+                        isValid = false;
+                    }
+                }
+            }
+
+            if (!isValid) {
+                alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
+                return;
+            }
+
+            calculateEulerCycle();
+        });
+    }
+
+    // обработчик отправки формы (для предотвращения стандартной отправки)
+    document.getElementById('matrix-form')
+        .addEventListener('submit', function(e) {
+        e.preventDefault();
+        calculateEulerCycle();
+    });
+});

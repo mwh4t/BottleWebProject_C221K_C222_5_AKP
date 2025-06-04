@@ -1,1 +1,4 @@
 bottle==0.13.3
+networkx
+matplotlib
+numpy
