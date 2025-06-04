@@ -15,7 +15,7 @@
                     <input type="number" id="matrix-size" name="size" min="1" max="20" value="3">
                 </label>
             </div>
-            
+
             <div class="matrix-container" id="matrix-container">
                 <!-- Таблица сгенерирована JavaScript -->
             </div>
@@ -41,6 +41,7 @@
     <div class="footer-content">
         <p>© 2025 Графовые задачи</p>
         <p><a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP.git">GitHub</a> |
-            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a></p>
+            <a href="https://github.com/mwh4t/BottleWebProject_C221K_C222_5_AKP/blob/main/README.md">Документация</a>
+        </p>
     </div>
 </footer>

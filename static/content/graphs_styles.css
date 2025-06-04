@@ -17,7 +17,7 @@ h2 {
     font-size: 18px;
     font-weight: bold;
     color: #333;
-    margin: 15px 0 0 0;
+    margin: 15px 0 15px 0;
 }
 
 h3 {
@@ -70,7 +70,7 @@ h3 {
     background-color: #e8e8e8;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .section {
@@ -83,19 +83,19 @@ h3 {
     border: 2px solid #333;
     border-radius: 8px;
     padding: 20px;
-    min-height: 272px;
+    min-height: 288px;
 }
 
 .graph-container {
     position: relative;
-    min-height: 272px;
+    min-height: 288px;
 }
 
 .graph-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 272px;
+    height: 288px;
     border: 1px solid #dee2e6;
     border-radius: 4px;
     color: #6c757d;

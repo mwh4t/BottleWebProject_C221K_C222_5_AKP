@@ -1,10 +1,10 @@
 // выдвижение сайдбара
-$(document).ready(function() {
+$(document).ready(function () {
     if ($('#sidebar').hasClass('collapsed')) {
         $('#content').addClass('expanded');
     }
 
-    $('#sidebarToggle').on('click', function() {
+    $('#sidebarToggle').on('click', function () {
         $('#sidebar').toggleClass('collapsed');
         $('#content').toggleClass('expanded');
         console.log('Sidebar toggled');
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 
 // обработка textarea с номерами строк
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const nodeCountTextarea =
         document.getElementById('node-count-textarea');
     const graphDataTextarea =
@@ -68,51 +68,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (nodeCountTextarea && nodeCountLines) {
             nodeCountTextarea.addEventListener('input',
-                function() {
-                if (limitLines(this, 1)) {
-                    // позиционирование курсора в конец
-                    this.selectionStart = this.selectionEnd = this.value.length;
-                }
-                updateLineNumbers(this, nodeCountLines);
-            });
+                function () {
+                    if (limitLines(this, 1)) {
+                        // позиционирование курсора в конец
+                        this.selectionStart = this.selectionEnd = this.value.length;
+                    }
+                    updateLineNumbers(this, nodeCountLines);
+                });
 
             nodeCountTextarea.addEventListener('keydown',
-                function(e) {
-                // предотвращение ввода новой строки
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                } else {
-                    setTimeout(() => {
-                        limitLines(this, 1);
-                        updateLineNumbers(this, nodeCountLines);
-                    }, 0);
-                }
-            });
+                function (e) {
+                    // предотвращение ввода новой строки
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                    } else {
+                        setTimeout(() => {
+                            limitLines(this, 1);
+                            updateLineNumbers(this, nodeCountLines);
+                        }, 0);
+                    }
+                });
         }
 
         if (graphDataTextarea && graphDataLines) {
             graphDataTextarea.addEventListener('input',
-                function() {
-                if (limitLines(this, 20)) {
-                    // позиционирование курсора в конец
-                    this.selectionStart = this.selectionEnd = this.value.length;
-                }
-                updateLineNumbers(this, graphDataLines);
-            });
+                function () {
+                    if (limitLines(this, 20)) {
+                        // позиционирование курсора в конец
+                        this.selectionStart = this.selectionEnd = this.value.length;
+                    }
+                    updateLineNumbers(this, graphDataLines);
+                });
 
             graphDataTextarea.addEventListener('keydown',
-                function(e) {
-                setTimeout(() => {
-                    limitLines(this, 20);
-                    updateLineNumbers(this, graphDataLines);
-                }, 0);
-            });
+                function (e) {
+                    setTimeout(() => {
+                        limitLines(this, 20);
+                        updateLineNumbers(this, graphDataLines);
+                    }, 0);
+                });
         }
 
         const calcBtn =
             document.getElementById('calc-btn');
         if (calcBtn) {
-            calcBtn.addEventListener('click', function() {
+            calcBtn.addEventListener('click', function () {
                 alert('Функция расчёта будет добавлена позже');
             });
         }
@@ -138,13 +138,13 @@ function generateMatrix(size) {
 
     // заголовки столбцов
     for (let i = 0; i < size; i++) {
-        tableHTML += `<th>${i+1}</th>`;
+        tableHTML += `<th>${i + 1}</th>`;
     }
     tableHTML += '</tr>';
 
     // тело матрицы
     for (let i = 0; i < size; i++) {
-        tableHTML += `<tr><th>${i+1}</th>`;
+        tableHTML += `<tr><th>${i + 1}</th>`;
         for (let j = 0; j < size; j++) {
             const disabled = i === j ? 'disabled' : '';
             const value = i === j ? '0' : '';
@@ -164,18 +164,18 @@ function generateMatrix(size) {
     // добавляем валидацию
     document.querySelectorAll('.matrix-cell')
         .forEach(cell => {
-        cell.addEventListener('change', function() {
-            if (this.value !== '0' && this.value !== '1') {
-                this.style.backgroundColor = '#ffe3e3';
-                setTimeout(() => {
-                    if (this.value !== '0' && this.value !== '1') {
-                        this.value = '';
-                    }
-                    this.style.backgroundColor = '';
-                }, 1000);
-            }
+            cell.addEventListener('change', function () {
+                if (this.value !== '0' && this.value !== '1') {
+                    this.style.backgroundColor = '#ffe3e3';
+                    setTimeout(() => {
+                        if (this.value !== '0' && this.value !== '1') {
+                            this.value = '';
+                        }
+                        this.style.backgroundColor = '';
+                    }, 1000);
+                }
+            });
         });
-    });
 }
 
 // генерация примера
@@ -205,47 +205,49 @@ function loadExample() {
 // инициализация при загрузке
 document.addEventListener('DOMContentLoaded',
     () => {
-    generateMatrix(3);
+        generateMatrix(3);
 
-    // обработчик изменения размера
-    document.getElementById('matrix-size')
-        .addEventListener('change', function() {
-        generateMatrix(parseInt(this.value));
-    });
+        // обработчик изменения размера
+        document.getElementById('matrix-size')
+            .addEventListener('change', function () {
+                generateMatrix(parseInt(this.value));
+            });
 
-    // обработчик кнопки примера
-    document.getElementById('example-btn')
-        .addEventListener('click', loadExample);
+        // обработчик кнопки примера
+        document.getElementById('example-btn')
+            .addEventListener('click', loadExample);
 
-    // обработчик отправки формы
-    document.getElementById('matrix-form')
-        .addEventListener('submit', function(e) {
-        const size = parseInt(document
-            .getElementById('matrix-size').value);
-        let isValid = true;
+        // обработчик отправки формы
+        document.getElementById('matrix-form')
+            .addEventListener('submit', function (e) {
+                const size = parseInt(document
+                    .getElementById('matrix-size').value);
+                let isValid = true;
 
-        // проверка значений
-        for (let i = 0; i < size; i++) {
-            for (let j = 0; j < size; j++) {
-                if (i === j) continue;
-                const cell = document
-                    .querySelector(`input[name="cell-${i}-${j}"]`);
-                if (cell && cell.value !== '0' && cell.value !== '1') {
-                    cell.style.backgroundColor = '#ffe3e3';
-                    isValid = false;
+                // проверка значений
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        if (i === j) continue;
+                        const cell = document
+                            .querySelector(`input[name="cell-${i}-${j}"]`);
+                        if (cell && cell.value !== '0' && cell.value !== '1') {
+                            cell.style.backgroundColor = '#ffe3e3';
+                            isValid = false;
+                        }
+                    }
                 }
-            }
-        }
 
-        if (!isValid) {
-            alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
-            e.preventDefault();
-        }
+                if (!isValid) {
+                    alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
+                    e.preventDefault();
+                }
+            });
     });
 });
 
 
-//Добавленно, при созании логики рабоыт Эйлерова цикла
+
+// функция расчёта эйлерова цикла
 function calculateEulerCycle() {
     const form = document.getElementById('matrix-form');
     const formData = new FormData(form);
