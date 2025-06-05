@@ -11,8 +11,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 // обработка textarea с номерами строк
 document.addEventListener('DOMContentLoaded', function () {
     const nodeCountTextarea =
@@ -126,6 +124,129 @@ document.addEventListener('DOMContentLoaded', function () {
             updateLineNumbers(graphDataTextarea, graphDataLines);
         }
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // кнопка расчёта
+    const calcButton = document.getElementById('metrics-calc-btn');
+
+    if (calcButton) {
+        calcButton.addEventListener('click', function() {
+            // получение данных из полей
+            const nodeCount = document.getElementById('node-count-textarea').value;
+            const graphData = document.getElementById('graph-data-textarea').value;
+
+            // валидация
+            if (!nodeCount || !graphData) {
+                alert('Пожалуйста, заполните количество узлов и данные графа');
+                return;
+            }
+
+            // отправка AJAX-запроса
+            fetch('/metrics/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'node-count-textarea': nodeCount,
+                    'graph-data-textarea': graphData
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Ошибка: ' + data.error);
+                    return;
+                }
+
+                // отображение результатов
+                updateResults(data);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке запроса');
+            });
+        });
+    }
+
+    // обновление результатов на странице
+    function updateResults(data) {
+        // обновление графа
+        const graphPlaceholder = document.querySelector('.graph-placeholder');
+        graphPlaceholder.innerHTML = `<img src="data:image/png;base64,${data.graph_image}" alt="Граф" style="max-width:100%;">`;
+
+        // обновление метрики
+        if (data.metrics) {
+            // эксцентриситет
+            const eccentricity = document.getElementById('eccentricity-result');
+            if (typeof data.metrics.eccentricity === 'string') {
+                eccentricity.textContent = data.metrics.eccentricity;
+            } else {
+                let eccentricityText = '';
+                for (const [node, value] of Object.entries(data.metrics.eccentricity)) {
+                    eccentricityText += `Вершина ${node}: ${value} `;
+                }
+                eccentricity.textContent = eccentricityText;
+            }
+
+            // радиус
+            const radius = document.getElementById('radius-result');
+            radius.textContent = data.metrics.radius;
+
+            // диаметр
+            const diameter = document.getElementById('diameter-result');
+            diameter.textContent = data.metrics.diameter;
+
+            // центр
+            const center = document.getElementById('center-result');
+            if (Array.isArray(data.metrics.center)) {
+                center.textContent = data.metrics.center.join(', ');
+            } else {
+                center.textContent = data.metrics.center;
+            }
+
+            // периферия
+            const periphery = document.getElementById('periphery-result');
+            if (Array.isArray(data.metrics.periphery)) {
+                periphery.textContent = data.metrics.periphery.join(', ');
+            } else {
+                periphery.textContent = data.metrics.periphery;
+            }
+
+            // плотность
+            const density = document.getElementById('density-result');
+            density.textContent = data.metrics.density.toFixed(4);
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const helpIcon = document
+        .getElementById('graph-data-help');
+    const tooltip = document
+        .getElementById('graph-data-tooltip');
+
+    helpIcon.addEventListener('click',
+        function(e) {
+        e.stopPropagation();
+
+        const rect = helpIcon.getBoundingClientRect();
+        tooltip.style.left = rect.right + 5 + 'px';
+        tooltip.style.top = rect.top - 10 + 'px';
+
+        tooltip.style.display = tooltip.style.display ===
+        'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function() {
+        tooltip.style.display = 'none';
+    });
+
+    tooltip.addEventListener('click',
+        function(e) {
+        e.stopPropagation();
+    });
 });
 
 
@@ -244,8 +365,7 @@ document.addEventListener('DOMContentLoaded',
             });
     });
 
-
-//Добавленно, при созании логики рабоыт Эйлерова цикла
+// расчёт эйлерова цикла
 function calculateEulerCycle() {
     const form = document.getElementById('matrix-form');
     const formData = new FormData(form);

@@ -1,55 +1,65 @@
-"""
-Routes and views for the bottle application.
-"""
-
-from bottle import route, view, response, post, request
+from bottle import route, view, response, post, request, template
 from datetime import datetime
 import json
-from utils.euler import process_euler_request
+from services.euler import process_euler_request
+from services.graph_metrics import handle_metrics_request
+
 
 @route('/')
 @route('/home')
 @view('index')
 def home():
-    """Renders the home page."""
     return dict(
         year=datetime.now().year
     )
+
 
 @route('/about')
 @view('about')
 def about():
     return
 
+
 @route('/euler')
 @view('euler')
 def euler():
     return
+
 
 @route('/hamilton')
 @view('hamilton')
 def hamilton():
     return
 
+
 @route('/metrics')
-@view('metrics')
-def metrics():
-    return
+def metrics_page():
+    # отображение страницы
+    return template('metrics', title='Расчёт метрик графа')
+
+
+@route('/metrics/calculate', method='POST')
+def calculate_metrics():
+    # обработка данных графа
+    result = handle_metrics_request(request)
+    response.content_type = 'application/json'
+    return json.dumps(result)
+
 
 @route('/theory')
 @view('theory')
 def theory():
     return
 
-#Сбор данных из формы со смежной матрицей
+
+# сбор данных из формы со смежной матрицей
 @post('/calculate')
 def calculate():
-    """Обрабатывает POST запрос для расчёта Эйлерова цикла"""
     try:
-        # Получаем размер матрицы
+        # размер матрицы
         size = int(request.forms.get('size', 3))
 
-        # Собираем матрицу из формы
+        # сбор матрицы из формы
         matrix_data = []
         for i in range(size):
             row = []
@@ -59,13 +69,13 @@ def calculate():
                 row.append(cell_value)
             matrix_data.append(row)
 
-        # Обрабатываем запрос
+        # обработка запроса
         result = process_euler_request(matrix_data)
 
-        # Устанавливаем заголовок для JSON
+        # установка заголовка для JSON
         response.content_type = 'application/json'
 
-        # Логируем информацию о сохранении (опционально)
+        # логирование
         if 'save_info' in result and result['save_info']['saved']:
             print(f"[INFO] {result['save_info']['message']}")
         elif 'save_info' in result:
@@ -86,7 +96,7 @@ def calculate():
         return json.dumps(error_response, ensure_ascii=False)
 
 
-#Сохрание и чтение из euler_results.json
+# сохранение и чтение из json
 @route('/results')
 def get_results():
     """Возвращает сохраненные результаты из JSON файла"""
