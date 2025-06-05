@@ -7,6 +7,7 @@ from datetime import datetime
 import json
 from services.euler import process_euler_request
 
+
 @route('/')
 @route('/home')
 @view('index')
@@ -16,32 +17,38 @@ def home():
         year=datetime.now().year
     )
 
+
 @route('/about')
 @view('about')
 def about():
     return
+
 
 @route('/euler')
 @view('euler')
 def euler():
     return
 
-@route('/hamilton')
+
+@route('/hamilton', method=['GET', 'POST'])
 @view('hamilton')
 def hamilton():
     return
+
 
 @route('/metrics')
 @view('metrics')
 def metrics():
     return
 
+
 @route('/theory')
 @view('theory')
 def theory():
     return
 
-#Сбор данных из формы со смежной матрицей
+
+# Сбор данных из формы со смежной матрицей
 @post('/calculate')
 def calculate():
     """Обрабатывает POST запрос для расчёта Эйлерова цикла"""
@@ -86,7 +93,7 @@ def calculate():
         return json.dumps(error_response, ensure_ascii=False)
 
 
-#Сохрание и чтение из euler_results.json
+# Сохрание и чтение из euler_results.json
 @route('/results')
 def get_results():
     """Возвращает сохраненные результаты из JSON файла"""

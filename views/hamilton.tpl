@@ -9,30 +9,30 @@
     <!-- Форма ввода матрицы -->
     <div class="matrix-input">
         <h2>Матрица смежности:</h2>
-        <form action="/hamilton" method="POST" id="matrix-form">
+        <form action="/hamilton" method="POST" id="hamilton-matrix-form">
             <div class="matrix-controls">
                 <label>Количество вершин (1-20):
-                    <input type="number" id="matrix-size" name="size" min="1" max="20" value="4">
+                    <input type="number" id="hamilton-matrix-size" name="size" min="1" max="20" value="4">
                 </label>
             </div>
 
-            <div class="matrix-container" id="matrix-container">
+            <div class="matrix-container" id="hamilton-matrix-container">
                 <!-- Таблица сгенерирована JavaScript -->
             </div>
         </form>
     </div>
 
     <div class="buttons">
-        <button id="calc-btn" type="submit" form="matrix-form">Рассчитать</button>
+        <button id="hamilton-calc-btn" type="button">Рассчитать</button>
         <button id="theory-btn" type="button" onclick="location.href='/theory#hamilton-theory'">К теории</button>
-        <button id="example-btn" type="button">Пример</button>
+        <button id="hamilton-example-btn" type="button">Пример</button>
     </div>
 
     <!-- Область вывода графика -->
     <div class="graph-output">
         <h2>Визуализация графа:</h2>
         <div class="graph-container">
-            <canvas id="graph-canvas"></canvas>
+            <img id="graph-image" src="" alt="Граф" style="max-width:100%; margin-top:20px; display:none;">
         </div>
     </div>
 </div>

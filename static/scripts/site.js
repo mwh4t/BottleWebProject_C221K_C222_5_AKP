@@ -1,15 +1,3 @@
-// выдвижение сайдбара
-$(document).ready(function () {
-    if ($('#sidebar').hasClass('collapsed')) {
-        $('#content').addClass('expanded');
-    }
-
-    $('#sidebarToggle').on('click', function () {
-        $('#sidebar').toggleClass('collapsed');
-        $('#content').toggleClass('expanded');
-        console.log('Sidebar toggled');
-    });
-});
 
 
 
@@ -372,4 +360,264 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             calculateEulerCycle();
         });
+});
+
+// Гамильтонов цикл
+
+// выдвижение сайдбара (оставляем без изменений)
+$(document).ready(function () {
+    if ($('#sidebar').hasClass('collapsed')) {
+        $('#content').addClass('expanded');
+    }
+
+    $('#sidebarToggle').on('click', function () {
+        $('#sidebar').toggleClass('collapsed');
+        $('#content').toggleClass('expanded');
+        console.log('Sidebar toggled');
+    });
+});
+
+
+// функция генерации матрицы
+function generateMatrix(size) {
+    const container = document.getElementById('hamilton-matrix-container');
+    let tableHTML = '<table class="matrix-table"><tr><th></th>';
+
+    for (let i = 0; i < size; i++) {
+        tableHTML += `<th>${i + 1}</th>`;
+    }
+    tableHTML += '</tr>';
+
+    for (let i = 0; i < size; i++) {
+        tableHTML += `<tr><th>${i + 1}</th>`;
+        for (let j = 0; j < size; j++) {
+            const disabled = i === j ? 'disabled' : '';
+            const value = i === j ? '0' : '';
+            tableHTML += `
+                <td>
+                    <input type="number" name="cell-${i}-${j}"
+                           class="matrix-cell" min="0" max="1"
+                           value="${value}" ${disabled}>
+                </td>`;
+        }
+        tableHTML += '</tr>';
+    }
+    tableHTML += '</table>';
+
+    container.innerHTML = tableHTML;
+
+    document.querySelectorAll('.matrix-cell')
+        .forEach(cell => {
+            cell.addEventListener('change', function () {
+                if (this.value !== '0' && this.value !== '1') {
+                    this.style.backgroundColor = '#ffe3e3';
+                    setTimeout(() => {
+                        if (this.value !== '0' && this.value !== '1') {
+                            this.value = '';
+                        }
+                        this.style.backgroundColor = '';
+                    }, 1000);
+                }
+            });
+        });
+}
+
+// генерация примера
+function loadExample() {
+    const exampleMatrix = [
+        [0, 1, 0, 1],
+        [1, 0, 1, 0],
+        [0, 1, 0, 1],
+        [1, 0, 1, 0]
+    ];
+
+    document.getElementById('hamilton-matrix-size').value = 4;
+    generateMatrix(4);
+
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (i !== j) {
+                const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                if (cell) cell.value = exampleMatrix[i][j];
+            }
+        }
+    }
+}
+
+// Алгоритм поиска Гамильтонова цикла (бэктрекинг)
+function findHamiltonianCycle(graph) {
+    const n = graph.length;
+    const path = Array(n).fill(-1);
+    path[0] = 0;
+
+    function isSafe(v, pos) {
+        if (graph[path[pos - 1]][v] === 0) return false;
+        if (path.includes(v)) return false;
+        return true;
+    }
+
+    function util(pos) {
+        if (pos === n) {
+            return graph[path[pos - 1]][path[0]] === 1;
+        }
+
+        for (let v = 1; v < n; v++) {
+            if (isSafe(v, pos)) {
+                path[pos] = v;
+                if (util(pos + 1)) return true;
+                path[pos] = -1;
+            }
+        }
+        return false;
+    }
+
+    if (!util(1)) return null;
+    path.push(path[0]);
+    return path;
+}
+
+// Генерация матрицы (как в первом скрипте)
+function generateHamiltonMatrix(size) {
+    const container = document.getElementById('hamilton-matrix-container');
+    let tableHTML = '<table class="matrix-table"><tr><th></th>';
+
+    for (let i = 0; i < size; i++) {
+        tableHTML += `<th>${i + 1}</th>`;
+    }
+    tableHTML += '</tr>';
+
+    for (let i = 0; i < size; i++) {
+        tableHTML += `<tr><th>${i + 1}</th>`;
+        for (let j = 0; j < size; j++) {
+            const disabled = i === j ? 'disabled' : '';
+            const value = i === j ? '0' : '';
+            tableHTML += `
+                <td>
+                    <input type="number" name="cell-${i}-${j}" class="matrix-cell"
+                           min="0" max="1" value="${value}" ${disabled}>
+                </td>`;
+        }
+        tableHTML += '</tr>';
+    }
+    tableHTML += '</table>';
+
+    container.innerHTML = tableHTML;
+
+    // Валидация при изменении ячеек
+    document.querySelectorAll('.matrix-cell').forEach(cell => {
+        cell.addEventListener('change', function () {
+            if (this.value !== '0' && this.value !== '1') {
+                this.style.backgroundColor = '#ffe3e3';
+                setTimeout(() => {
+                    if (this.value !== '0' && this.value !== '1') {
+                        this.value = '';
+                    }
+                    this.style.backgroundColor = '';
+                }, 1000);
+            }
+        });
+    });
+}
+
+// Загрузка примера
+function loadHamiltonExample() {
+    const exampleMatrix = [
+        [0, 1, 0, 1],
+        [1, 0, 1, 0],
+        [0, 1, 0, 1],
+        [1, 0, 1, 0]
+    ];
+
+    document.getElementById('hamilton-matrix-size').value = 4;
+    generateHamiltonMatrix(4);
+
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (i !== j) {
+                const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+                if (cell) cell.value = exampleMatrix[i][j];
+            }
+        }
+    }
+}
+
+// Проверка валидности матрицы (0 или 1)
+function validateHamiltonMatrix(size) {
+    let isValid = true;
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            if (i === j) continue;
+            const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+            if (!cell) continue;
+            if (cell.value !== '0' && cell.value !== '1') {
+                cell.style.backgroundColor = '#ffe3e3';
+                isValid = false;
+            }
+        }
+    }
+    return isValid;
+}
+
+async function calculateHamiltonCycleServer() {
+    const size = parseInt(document.getElementById('hamilton-matrix-size').value);
+    if (!validateHamiltonMatrix(size)) {
+        alert('Пожалуйста, введите только 0 или 1 в ячейки матрицы!');
+        return;
+    }
+
+    const matrix = [];
+    for (let i = 0; i < size; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < size; j++) {
+            const cell = document.querySelector(`input[name="cell-${i}-${j}"]`);
+            matrix[i][j] = parseInt(cell.value);
+        }
+    }
+
+    const response = await fetch('/hamilton', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(matrix)
+    });
+
+    // Вместо response.json() используем response.text()
+    const html = await response.text();
+
+    // Вставляем полученный HTML внутрь контейнера
+    const container = document.querySelector('.graph-container');
+    container.innerHTML = html;
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Генерируем начальную матрицу (например, 3x3)
+    generateHamiltonMatrix(3);
+
+    // При изменении размера матрицы генерируем новую
+    document.getElementById('hamilton-matrix-size')
+        .addEventListener('change', e => {
+            generateHamiltonMatrix(parseInt(e.target.value));
+        });
+
+    // Кнопка загрузки примера
+    document.getElementById('hamilton-example-btn')
+        .addEventListener('click', loadHamiltonExample);
+
+    // Кнопка "Рассчитать" теперь вызывает серверную функцию
+    const calcBtn = document.getElementById('hamilton-calc-btn');
+    if (calcBtn) {
+        calcBtn.addEventListener('click', e => {
+            e.preventDefault();
+            calculateHamiltonCycleServer();
+        });
+    }
+
+    // Отправка формы тоже вызывает серверную функцию
+    const form = document.getElementById('hamilton-matrix-form');
+    if (form) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            calculateHamiltonCycleServer();
+        });
+    }
 });
