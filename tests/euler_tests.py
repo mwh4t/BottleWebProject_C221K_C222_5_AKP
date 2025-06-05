@@ -165,6 +165,104 @@ class TestDataValidation(unittest.TestCase):
         self.assertEqual(result['graph_data']['vertices_count'], size)
 
 
+class TestJSONSaving(unittest.TestCase):
+    """Тесты сохранения данных в JSON"""
+
+    def setUp(self):
+        """Настройка временной директории для тестов"""
+        self.test_dir = tempfile.mkdtemp()
+        self.test_file = os.path.join(self.test_dir, 'test_results.json')
+
+    def tearDown(self):
+        """Очистка после тестов"""
+        if os.path.exists(self.test_file):
+            os.remove(self.test_file)
+        if os.path.exists(self.test_dir):
+            os.rmdir(self.test_dir)
+
+    @patch('services.euler.os.path.dirname')
+    def test_save_new_result(self, mock_dirname):
+        """Тест сохранения нового результата"""
+        mock_dirname.return_value = self.test_dir
+
+        test_data = {
+            'success': True,
+            'cycle': [0, 1, 2, 0],
+            'message': 'Test cycle'
+        }
+
+        success, message = save_result_to_json(test_data, 'test_results.json')
+
+        self.assertTrue(success)
+        self.assertIn('сохранены', message)
+        self.assertTrue(os.path.exists(self.test_file))
+
+    @patch('services.euler.os.path.dirname')
+    def test_append_to_existing_file(self, mock_dirname):
+        """Тест добавления к существующему файлу"""
+        mock_dirname.return_value = self.test_dir
+
+        # Создаем первоначальный файл
+        initial_data = [{'test': 'data1'}]
+        with open(self.test_file, 'w', encoding='utf-8') as f:
+            json.dump(initial_data, f)
+
+        test_data = {
+            'success': True,
+            'cycle': [0, 1, 0],
+            'message': 'New test cycle'
+        }
+
+        success, message = save_result_to_json(test_data, 'test_results.json')
+
+        self.assertTrue(success)
+
+        # Проверяем, что данные добавились
+        with open(self.test_file, 'r', encoding='utf-8') as f:
+            saved_data = json.load(f)
+
+        self.assertEqual(len(saved_data), 2)
+        self.assertEqual(saved_data[1]['cycle'], [0, 1, 0])
+
+    @patch('services.euler.os.path.dirname')
+    def test_limit_saved_results(self, mock_dirname):
+        """Тест ограничения количества сохраненных результатов"""
+        mock_dirname.return_value = self.test_dir
+
+        # Создаем файл с 99 записями
+        initial_data = [{'test': f'data{i}'} for i in range(99)]
+        with open(self.test_file, 'w', encoding='utf-8') as f:
+            json.dump(initial_data, f)
+
+        # Добавляем еще 2 записи (должно остаться 100)
+        for i in range(2):
+            test_data = {'new_test': f'data{i}'}
+            save_result_to_json(test_data, 'test_results.json')
+
+        # Проверяем ограничение
+        with open(self.test_file, 'r', encoding='utf-8') as f:
+            saved_data = json.load(f)
+
+        self.assertEqual(len(saved_data), 100)
+
+    @patch('services.euler.os.path.dirname')
+    def test_handle_corrupted_file(self, mock_dirname):
+        """Тест обработки поврежденного JSON файла"""
+        mock_dirname.return_value = self.test_dir
+
+        # Создаем поврежденный JSON файл
+        with open(self.test_file, 'w') as f:
+            f.write('{"invalid": json content')
+
+        test_data = {'success': True, 'test': 'data'}
+        success, message = save_result_to_json(test_data, 'test_results.json')
+
+        self.assertTrue(success)  # Должно обработать ошибку и создать новый файл
+
+
+
+
+
 if __name__ == '__main__':
     # Настройка детального вывода тестов
     unittest.main(verbosity=2)
