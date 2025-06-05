@@ -22,7 +22,14 @@
             </div>
 
             <div class="input-section">
-                <h2>Данные графа:</h2>
+                <h2>Данные графа: <span class="help-icon" id="graph-data-help">?</span></h2>
+                <div class="tooltip" id="graph-data-tooltip">
+                    <p>Формат ввода данных графа:</p>
+                    <ol>
+                        <li>Первые N строк - номера вершин (от 1 до N)</li>
+                        <li>Последующие строки - рёбра в формате "вершина1 вершина2"</li>
+                    </ol>
+                </div>
                 <div class="textarea-container">
                     <div class="line-numbers" id="graph-data-lines">1<br>2<br>3<br>4<br>5<br>6</div>
                     <textarea class="input-field graph-data-field"
@@ -47,9 +54,7 @@
         <div class="right-panel">
             <div class="graph-output">
                 <div class="graph-container">
-                    <div class="graph-placeholder">
-                        Область для отображения графа
-                    </div>
+                    <div class="graph-placeholder"></div>
                 </div>
             </div>
         </div>
