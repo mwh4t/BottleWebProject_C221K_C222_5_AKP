@@ -2,10 +2,11 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view, response, post, request
+from bottle import route, view, response, post, request, template
 from datetime import datetime
 import json
 from services.euler import process_euler_request
+from services.hamilton import process_hamilton_request
 
 
 @route('/')
@@ -30,10 +31,41 @@ def euler():
     return
 
 
-@route('/hamilton', method=['GET', 'POST'])
+@route('/hamilton', method='GET')
 @view('hamilton')
-def hamilton():
+def hamilton_get():
+    """Страница поиска Гамильтонова цикла."""
     return
+
+
+@post('/hamilton')
+def hamilton_post():
+    """Обрабатывает POST запрос с матрицей смежности для поиска Гамильтонова цикла"""
+    try:
+        matrix_data = request.json
+        result = process_hamilton_request(matrix_data)
+
+        if result.get('success'):
+            cycle = result.get('cycle')
+            cycle_str = " → ".join(str(v + 1) for v in cycle) if cycle else ''
+            html = f"""
+            <div class='result-container'>
+                <div class='result-message'>
+                    <h3>{result.get('message')}</h3>
+                    {f'<p><strong>Найденный цикл:</strong> {cycle_str}</p>' if cycle else ''}
+                </div>
+                <div class='graph-image'>
+                    <img src='data:image/png;base64,{result.get('image')}' alt='Визуализация графа'/>
+                </div>
+            </div>
+            """
+            return html
+        else:
+            msg = result.get('error', result.get('message', 'Неизвестная ошибка'))
+            return f"<div class='error-container'><h3>Ошибка</h3><p>{msg}</p></div>"
+
+    except Exception as e:
+        return f"<div class='error-container'><h3>Ошибка</h3><p>Ошибка сервера: {str(e)}</p></div>"
 
 
 @route('/metrics')
