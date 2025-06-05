@@ -260,7 +260,42 @@ class TestJSONSaving(unittest.TestCase):
         self.assertTrue(success)  # Должно обработать ошибку и создать новый файл
 
 
+class TestGraphVisualization(unittest.TestCase):
+    """Тесты визуализации графов"""
 
+    def test_visualization_creation(self):
+        """Тест создания визуализации"""
+        from services.euler import create_graph_visualization
+
+        matrix = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+        cycle = [0, 1, 2, 0]
+        message = "Test visualization"
+
+        image_base64 = create_graph_visualization(matrix, cycle, message)
+
+        self.assertIsInstance(image_base64, str)
+        self.assertGreater(len(image_base64), 0)
+
+        # Проверяем, что это валидный base64
+        import base64
+        try:
+            base64.b64decode(image_base64)
+            is_valid_base64 = True
+        except:
+            is_valid_base64 = False
+
+        self.assertTrue(is_valid_base64)
+
+    def test_visualization_without_cycle(self):
+        """Тест визуализации без цикла"""
+        from services.euler import create_graph_visualization
+
+        matrix = [[0, 1, 0], [1, 0, 0], [0, 0, 0]]
+
+        image_base64 = create_graph_visualization(matrix, None, "No cycle")
+
+        self.assertIsInstance(image_base64, str)
+        self.assertGreater(len(image_base64), 0)
 
 
 if __name__ == '__main__':
