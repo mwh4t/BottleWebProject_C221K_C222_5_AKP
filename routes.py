@@ -5,7 +5,7 @@ Routes and views for the bottle application.
 from bottle import route, view, response, post, request
 from datetime import datetime
 import json
-from utils.euler import process_euler_request
+from services.euler import process_euler_request
 
 @route('/')
 @route('/home')
