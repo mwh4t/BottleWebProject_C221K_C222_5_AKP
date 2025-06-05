@@ -120,6 +120,9 @@ h3 {
     font-size: 12px;
 }
 
+/*
+ * @author mwh4t
+ */
 /* специфичные стили для metrics */
 .metrics-container {
     display: flex;
@@ -256,6 +259,9 @@ h3 {
 
 
 
+/*
+ * @author ab4shevd
+ */
 /* специфичные стили для euler */
 .matrix-input {
     margin-bottom: 20px;

@@ -1,3 +1,6 @@
+/**
+ * @author mwh4t
+ */
 // выдвижение сайдбара
 $(document).ready(function () {
     if ($('#sidebar').hasClass('collapsed')) {
@@ -203,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nodeCountTextarea = document
         .getElementById('node-count-textarea');
 
-    // Validate on input
+    // валидация ввода
     nodeCountTextarea.addEventListener('input',
         function(e) {
         this.value = this.value.replace(/\D/g, '');
@@ -379,6 +382,9 @@ function updateResults(data) {
 
 
 
+/**
+ * @author ab4shevd
+ */
 // функция генерации матрицы
 function generateMatrix(size) {
     const container = document

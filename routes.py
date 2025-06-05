@@ -5,6 +5,9 @@ from services.euler import process_euler_request
 from services.graph_metrics import handle_metrics_request
 
 
+"""
+@author mwh4t
+"""
 @route('/')
 @route('/home')
 @view('index')
@@ -14,30 +17,44 @@ def home():
     )
 
 
+"""
+@author pokrovskayaEl
+"""
 @route('/about')
 @view('about')
 def about():
     return
 
-
+"""
+@author ab4shevd
+"""
 @route('/euler')
 @view('euler')
 def euler():
     return
 
 
+"""
+@author pokrovskayaEl
+"""
 @route('/hamilton')
 @view('hamilton')
 def hamilton():
     return
 
 
+"""
+@author mwh4t
+"""
 @route('/metrics')
 def metrics_page():
     # отображение страницы
     return template('metrics', title='Расчёт метрик графа')
 
 
+"""
+@author mwh4t
+"""
 @route('/metrics/calculate', method='POST')
 def calculate_metrics():
     # обработка данных графа
@@ -45,13 +62,18 @@ def calculate_metrics():
     response.content_type = 'application/json'
     return json.dumps(result)
 
-
+"""
+@author ab4shevd
+"""
 @route('/theory')
 @view('theory')
 def theory():
     return
 
 
+"""
+@author ab4shevd
+"""
 # сбор данных из формы со смежной матрицей
 @post('/calculate')
 def calculate():
@@ -96,6 +118,9 @@ def calculate():
         return json.dumps(error_response, ensure_ascii=False)
 
 
+"""
+@author ab4shevd
+"""
 # сохранение и чтение из json
 @route('/results')
 def get_results():
